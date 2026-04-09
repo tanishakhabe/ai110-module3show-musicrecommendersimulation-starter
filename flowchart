@@ -1,0 +1,7 @@
+flowchart TD
+    A[CSV file: songs.csv] --> B[Load song rows]
+    B --> C[Create Song objects]
+    C --> D[Score each song against user preferences]
+    D --> E[Sort songs by score]
+    E --> F[Select top ranked songs]
+    F --> G[Return ranked list]

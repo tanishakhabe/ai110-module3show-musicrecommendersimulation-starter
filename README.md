@@ -29,6 +29,16 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+
+Real-world recommendation systems create embeddings to represent songs and separate user profiles. To recommend songs to users, you pick the songs that have the closest match to the user's profile.
+
+To compute a score for each song, we give each song points for matching the user's preferred genre and mood. Then, we add or subtract based on how close the song's energy, tempo, acousticness, valence, and danceability is to the user's target characteristics.
+
+The user profile will store information on a user's perferred genre, mood, energy tempo, acousticness, valence, and danceability. 
+
+We compute scores for each song, and then recommend the top 10 highest scoring songs.
+
+There are some biases in the system, such as overprioritizing genre and mood as top features, then 
 ---
 
 ## Getting Started
