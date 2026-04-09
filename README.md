@@ -13,6 +13,9 @@ Your goal is to:
 
 Replace this paragraph with your own summary of what your version does.
 
+This version of the project builds a rule-based music recommender that matches songs to a user taste profile using genre, mood, energy, tempo, valence, danceability, and acousticness. I represent both songs and users as structured feature data, score each song by rewarding close matches and penalizing mismatches, then rank songs by total score to produce recommendations with short explanations. I evaluated it by testing very different user profiles (including conflicting and sparse preferences) to see where rankings felt reasonable and where they broke down. The biggest takeaway is that simple scoring systems are transparent and easy to debug, but they can still create bias and filter bubbles, which mirrors tradeoffs in real-world recommender systems.
+
+
 ---
 
 ## How The System Works
@@ -35,10 +38,7 @@ Real-world recommendation systems create embeddings to represent songs and separ
 To compute a score for each song, we give each song points for matching the user's preferred genre and mood. Then, we add or subtract based on how close the song's energy, tempo, acousticness, valence, and danceability is to the user's target characteristics.
 
 The user profile will store information on a user's perferred genre, mood, energy tempo, acousticness, valence, and danceability. 
-
-We compute scores for each song, and then recommend the top 10 highest scoring songs.
-
-There are some biases in the system, such as overprioritizing genre and mood as top features, then 
+We compute scores for each song, and then recommend the top 10 highest scoring songs. There are some biases in the system, such as over-prioritizing genre and mood as top features, then 
 ---
 
 ## Getting Started
@@ -84,6 +84,13 @@ Use this section to document the experiments you ran. For example:
 - What happened when you added tempo or valence to the score
 - How did your system behave for different types of users
 
+I ran a weight experiment where I reduced genre importance and increased energy importance. After this change, recommendations were less driven by exact genre labels and more by whether a song matched the target energy, which helped some profiles feel less genre-locked.
+
+I also expanded the score to include tempo and valence (along with danceability and acousticness), not just genre and mood. This made rankings more nuanced because songs could gain or lose points on several dimensions instead of only one or two categorical matches.
+
+To evaluate behavior, I tested multiple profile types: high-energy pop, chill lofi, deep intense rock, hype sad, conflicting preferences (intense pop with chill feature targets), and sparse profiles with missing features. The detailed profiles produced more personalized rankings, while sparse profiles created ties and less reliable ordering, revealing how easily the system can overfit to one dominant feature.
+
+
 ---
 
 ## Limitations and Risks
@@ -97,6 +104,8 @@ Examples:
 - It might over favor one genre or mood
 
 You will go deeper on this in your model card.
+
+One limitation was the training data size, quality, and variability. Another limitation of the models is the feature set, which doesn't include outside, contextual features such as time of day, user age, gender, past listening history, etc. The data set also does not include multilingual songs. 
 
 ---
 

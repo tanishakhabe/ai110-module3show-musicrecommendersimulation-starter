@@ -27,6 +27,8 @@ def main() -> None:
     }
 
     # Profile 2: Chill Lofi
+    # Compared to High-Energy Pop, this should shift the top results toward lofi and away from high-energy pop,
+    # because the genre and mood preferences change and the target energy drops sharply.
     chill_lofi = {
         "genre": "lofi",
         "mood": "chill",
@@ -38,6 +40,8 @@ def main() -> None:
     }
 
     # Profile 3: Deep Intense Rock
+    # Compared to Chill Lofi, this should favor louder, faster songs and penalize calm acoustic tracks,
+    # which makes sense because the desired genre, mood, and tempo all move in the opposite direction.
     deep_intense_rock = {
         "genre": "rock",
         "mood": "intense",
@@ -49,6 +53,8 @@ def main() -> None:
     }
 
     # Profile 4: Hype Sad
+    # Compared to Deep Intense Rock, this keeps the energy high but changes the mood and genre,
+    # so the output should still lean energetic while shifting away from rock-specific matches.
     hype_sad = {
         "genre": "hip-hop",
         "mood": "sad",
@@ -60,6 +66,9 @@ def main() -> None:
     }
 
     # Profile 5: Intense Pop with Chill Preferences
+    # Compared to Hype Sad, this creates a conflict: the genre prefers pop and intense tracks,
+    # but the energy, valence, and acousticness preferences point toward a much calmer sound.
+    # That should produce mixed recommendations because the score has to balance competing signals.
     intense_pop_chill = {
         "genre": "pop",
         "mood": "intense",
@@ -72,6 +81,8 @@ def main() -> None:
     
 
     # Profile 6: Missing Features
+    # Compared to Intense Pop with Chill Preferences, this is much less specific,
+    # so the output should rely mostly on genre and produce tighter ties among lofi songs.
     missing_features = {
         "genre": "lofi"}
 
