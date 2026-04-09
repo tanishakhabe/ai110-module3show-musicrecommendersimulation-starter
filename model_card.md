@@ -70,6 +70,8 @@ Prompts:
 - Cases where the system overfits to one preference  
 - Ways the scoring might unintentionally favor some users  
 
+The current scorer can create a filter bubble because it gives a large bonus to exact genre and mood matches, so recommendations tend to cluster around a user’s stated identity rather than exploring nearby alternatives. It also has a binary bias toward exact string matches, which means small input differences like casing or a slightly different genre label can drop a song out of the bubble entirely instead of treating it as close. The weakness that showed up during experimentation was the sparse lofi profile: with only genre = lofi, Focus Flow, Library Rain, and Midnight Coding all tied, and the alphabetical tie-break in recommender.py picked Focus Flow, so the output was driven more by naming than by any deeper preference signal. In practice, that means the system can over-concentrate results and still look precise even when it is mostly just sorting on one dominant feature.
+
 ---
 
 ## 7. Evaluation  
@@ -85,6 +87,9 @@ Prompts:
 
 No need for numeric metrics unless you created some.
 
+The user profiles we tested were high energy pop, chill lofi, deep intense rock, hype sad, intense pop with chill, and lofi with missing features.
+
+What surprised me about the results is that a lot of the same songs were being recommended for all of the profiles, such as Gym Hero was being recommended for the high energy pop, hype sad, and intense pop with chill profile. Recommendations also tended to be stronger for 
 ---
 
 ## 8. Future Work  
